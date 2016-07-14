@@ -5,14 +5,24 @@
 	<title>ChatB</title>
 	<link rel="stylesheet" type="text/css" href="/css/chat.css" />
 	<script>
+		var area;
+		function init(){
+			area=document.getElementById("area");
+
+		}
+		function enter(obj){
+			opener.chatA.area.value+=obj.value+"\n";
+			area.value+=obj.value+"\n";
+			obj.value="";
+		}
 		
 	</script>
 
 </head>
-<body>
+<body onload="init()">
 	<div id="wrapper">
-		<textarea>뭐해?</textarea>
-		<input type="text">
+		<textarea id="area">뭐해?</textarea>
+		<input type="text" onkeyup="enter(this)">
 	</div>
 </body>
 </html>

@@ -5,14 +5,32 @@
 	<title>ChatA</title>
 	<link rel="stylesheet" type="text/css" href="/css/chat.css" />
 	<script>
+		var area;
+		function init(){
+			area=document.getElementById("area");
+		}
+		function enter(obj){
+			//chatB의 textarea의 값에 대화내용 뿌리기.
 		
+			var key=event.keyCode;
+			if(key==13){	
+				//var me= document.getElementById("me");
+
+				opener.chatB.area.value+=obj.value+"\n";
+				area.value+=obj.value+"\n";
+				obj.value="";
+				
+				//opener.chatA.area.value+=me.value+"\n";
+			}
+		
+		}
 	</script>
 
 </head>
-<body>
+<body onload="init()">
 	<div id="wrapper">
-		<textarea>뭐해?</textarea>
-		<input type="text">
+		<textarea id="area">뭐해?</textarea>
+		<input type="text" id="me" onkeyup="enter(this)">
 	</div>
 </body>
 </html>
