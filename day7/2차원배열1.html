@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>점찍기</title>
+
+	<style>
+		div{
+			background:pink;
+			height:800px;
+		}
+		body{
+			margin:0px;
+			}
+	</style>
+
+
+	<script>
+
+		var wrapper;
+
+		var wid=100;	//이미지 폭
+		var hei=100;
+
+		function init(){
+			wrapper = document.getElementById("wrapper");
+		}
+
+		function stamp(){
+			//동적 tag - div안 이미지 출력
+
+			var img = document.createElement("img");		//문서내에 태그를 생성 및 부착
+			img.src="../images/stamp.png";				//생성된 이미지에 경로추가
+			
+			img.style.width=wid+"px";
+			img.sytle.height=hei+"px";
+			img.style.position="absolute";
+			img.style.left=(event.ClientX-wid/2)+"px";
+			img.style.top=(event.ClientY-hei/2)+"px";
+
+
+			wrapper.appendChild(img);						//img에 추가..
+		}
+
+	
+	</script>
+
+</head>
+<body onload="init()" onmousedown="stamp()">
+	<div id = "wrapper">
+	
+	</div>
+</body>
+</html>

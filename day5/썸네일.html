@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>썸네일</title>
+	<style>
+		div{
+			border:2px solid;
+			width:600px;
+			height:100%;
+			margin:auto;
+		}
+	</style>
+	<script>
+		function selectPic(x){
+			document.getElementById("cap").src="../images/"+x+".jpg"
+		}
+	</script>
+
+</head>
+<body>
+	<div>
+		<table width="100%" border="2px">
+			<tr>
+				<td><img src="../images/1.jpg" width="50px" onmouseover="selectPic(1)"></td>
+				<td><img src="../images/2.jpg" width="50px" onmouseover="selectPic(2)"></td>
+				<td><img src="../images/3.jpg" width="50px" onmouseover="selectPic(3)"></td>
+				<td><img src="../images/4.jpg" width="50px" onmouseover="selectPic(4)"></td>
+				<td><img src="../images/5.jpg" width="50px" onmouseover="selectPic(5)"></td>
+				<td><img src="../images/4.jpg" width="50px" onmouseover="selectPic(4)"></td>
+				<td><img src="../images/5.jpg" width="50px" onmouseover="selectPic(5)"></td>
+				<td><img src="../images/3.jpg" width="50px" onmouseover="selectPic(3)"></td>
+				<td><img src="../images/2.jpg" width="50px" onmouseover="selectPic(2)"></td>
+				<td><img src="../images/1.jpg" width="50px" onmouseover="selectPic(1)"></td>
+			</tr>
+		</table>
+
+		<img src="../images/"+x+".jpg" id="cap" width="100%">
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>마우스 움직이기</title>
+	<style>
+	//div는 화면을 분할하는 역활, 웹사이트의 Layout에 사용
+	
+	div{
+	 width:100%;
+	 height:850px;
+	 background:yellow;
+	}
+
+	#pic{
+		position:absolute;
+		left:100px;
+		top:100px;
+	}
+	</style>
+	<script>
+		var flag = false;		//피카추를 움직이게 할지 여부를 결정하는 변수;
+
+		function getInfo(){
+			console.log("X좌표:"+event.clientX+","+"Y좌표:"+event.clientY);
+			document.getElementById("tx").value=event.clientX;
+			document.getElementById("ty").value=event.clientY;
+			if(flag){
+				document.getElementById("pic").style.border="3px solid red";
+				document.getElementById("pic").style.left=(event.clientX-40)+"px";
+				document.getElementById("pic").style.top=(event.clientY-40)+"px";
+			}else{
+				document.getElementById("pic").style.border="0px";
+			}
+		}
+		
+
+		function setFlag(){
+			flag=!flag;
+		}
+
+	</script>
+
+</head>
+<body onmousemove="getInfo()">
+
+	X좌표 : <input type="textbox" id="tx">
+	Y좌표 : <input type="textbox" id="ty">
+	
+	<div><img src="../images/2.jpg" id="pic" onclick="setFlag()"></div>
+	
+</body>
+</html>

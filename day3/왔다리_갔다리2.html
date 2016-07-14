@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+	<style>
+		#star{
+			position:absolute;
+			left:0px;
+			top:100px;
+		}
+	</style>
+	<script>
+		var x = 0;
+		var forward=true;
+
+		function move(){
+		//문서내의 star의 x축을 증가, 목표지점에 도달시 다시 x축을 감소
+			if(forward){
+				x+=10;
+			}else{
+				x-=10;
+			}
+			if(x==200 || x==0){
+				forward=false;
+			}
+
+			console.log(x); //console.log는 현재 변수값의 상태를 나타냄
+			document.getElementById("star").style.left=x+"px";
+
+		}
+
+	</script>
+</head>
+<body>
+	<input type="button" value="이동" onclick="move()">
+	<span id="star">★</span>
+</body>
+</html>

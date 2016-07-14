@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>슈렉 겔러리</title>
+	<style>
+		#wrapper{
+			width:500px;
+			margin-left:auto;
+			margin-right:auto;
+			margin-top:200px;
+			text-align:center;
+			font-size:20pt;
+		}
+		#mask{
+			width:500px;
+			height:340px;
+			overflow:hidden;
+
+		}
+		#box{
+			height:340px;
+			/*position:relative;
+			left:0px;
+			Javascript에서는 포지션이 잘안먹음 inline방식으로 해야함*/ 
+		}
+		a{
+			text-decoration:none;
+			color:#000000;
+		}
+		a:hover{
+			color:gray;
+		}
+	</style>
+
+	<script>
+		
+		var arr = [
+		"../images/shurek/img0.jpg",
+		"../images/shurek/img1.jpg",
+		"../images/shurek/img2.jpg",
+		"../images/shurek/img3.jpg",
+		"../images/shurek/img4.jpg",
+		"../images/shurek/img5.jpg",
+		"../images/shurek/img6.jpg"];
+		
+		var box;
+		var targetX=0;		//목표점
+		var a=0.9;			//비율계수 
+
+		function init(){
+			box = document.getElementById("box");
+			box.style.width=500*arr.length+"px";
+			
+			for( i=0;i<arr.length ;i++ ){
+				var img = document.createElement("img");
+				img.src= arr[i];
+				box.appendChild(img);
+			}		
+			move();
+		}
+
+		function showImg(pos){		
+			//var box = document.getElementById("box");
+			//box.style.left=-(pos*500)+"px";
+			targetX= -pos*500
+		}
+
+		function move(){
+			box.style.left =targetX-a*(targetX-parseFloat(box.style.left))+"px";
+			//cosole.log(box.style.left); ???왜지???
+			setTimeout("move()",10);
+		}
+	</script>
+
+</head>
+<body onload="init()">
+	<div id="wrapper">
+		<div id ="mask">
+			<div id = "box" style="position:relative; left:0px;top:0px"></div>
+		</div>
+		<a href="javascript:showImg(0)">●</a>
+		<a href="javascript:showImg(1)">●</a>
+		<a href="javascript:showImg(2)">●</a>
+		<a href="javascript:showImg(3)">●</a>
+		<a href="javascript:showImg(4)">●</a>
+		<a href="javascript:showImg(5)">●</a>
+		<a href="javascript:showImg(6)">●</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<img src="../images/1.jpg" width="450px" height="300px" id="photo">
+	<input type="button" value="이전사진" onClick="before()">
+	<input type="button" value="다음사진" onClick="next()">
+
+</body>
+</html>
+
+<script>
+
+var x = 1;
+
+function next(){
+	x++;
+	//console.log("../images/"+x+".jpg");
+	if(x<=5){
+		document.getElementById("photo").src="../images/"+x+".jpg";
+	}else{
+		alert("더이상 사진이 없습니다.");
+	}
+}
+
+function before(){
+	x--;
+	//console.log("../images/"+x+".jpg");
+	if(<x
+	document.getElementById("photo").src="../images/"+x+".jpg";
+}
+</script>

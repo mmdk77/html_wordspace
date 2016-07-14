@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>메모리DB</title>
+	<style>
+	#wrapper{
+		width:650px;
+		height:600px;
+		margin:0px auto;
+	}
+	#addUser{
+		width:150px;
+		height:600px;
+	
+		background:#c0c0c0;
+		float:left;
+		
+	}
+	#viewUser{
+		width:500px;
+		height:600px;
+		background:#66ffff;
+		float:left;
+	}
+	</style>
+	<script>
+		var btn;		
+		var m_pwd;
+		var m_id;
+		
+		var member_list = new Array(); //회원을 담을 배열선언
+		var cnt =0; //배열의 순서
+
+		var table;
+
+		window.addEventListener("load",function(){
+			getTitle();
+
+			//문서 로드시 버튼처리
+			btn = document.getElementById("btn");
+			m_id = document.getElementById("m_id");
+			m_pwd = document.getElementById("m_pwd");
+
+			btn.addEventListener("click",function(){
+				if(m_id.value==""){
+					alert("아이디 입력.");
+					m_id.focus();
+					return;
+				}else if(m_pwd.value==""){
+					alert("pwd 입력.");
+					m_pwd.focus();
+					return;
+				}	
+				var member = [m_id.value, m_pwd.value];	
+				member_list.push(member);
+				/* 
+				2차원 배열을 담는 방법.
+				member_list[cnt]=member;
+				cnt++;
+				*/
+				alert(member_list.length+"째 가입자");	
+				getList();
+			});
+		});
+		
+		//등록된 회원을 테이블 출력.
+
+		function getTitle(){
+			table=document.createElement("table");
+			table.style.width=450+"px";
+			table.style.border="1px solid";
+
+			//HTML tr tag 생성
+			var tr=document.createElement("tr");
+			
+			//HTML td tag 생성
+			var no_td=document.createElement("td"); //Number용 td;
+			no_td.innerText="번호";
+			
+			var id_td=document.createElement("td"); //ID용 td;
+			id_td.innerText="ID";		
+			
+			var pwd_td=document.createElement("td"); //Password용 td;
+			pwd_td.innerText="Password";
+			
+			//생성된 td들을 tr에 추가
+			tr.appendChild(no_td);
+			tr.appendChild(id_td);
+			tr.appendChild(pwd_td);
+
+			//생성된 tr 테이블에 추가
+			table.appendChild(tr);
+			
+			//div의 최종출력
+			viewUser.appendChild(table);
+		
+		}//end of getTitle.
+
+		//appendChild의 특징상 테이블에 기존값이 누적되므로 리스트를 보여주기전에 Table의 자식요소를 지움
+		function initTable(){
+			table.innerHTML="";
+			getTitle();
+			//table.removeChild(tr);
+		}
+	
+
+		function getList(){
+			initTable();
+			//HTML table tag 생성
+			var len = member_list.length; //반복을 위한 2차원배열의 크기(길이)를 변수화.
+			var num = len;
+
+			for (var i=len;i<0 ;i-- ){
+				//등록된 데이터를 출력하기위한 테이블 생성.
+				var record_tr = document.createElement("tr");
+				var td0 = document.createElement("td");
+				var td1 = document.createElement("td");
+				var td2 = document.createElement("td");
+			
+				td0.innerText = num--;
+				td1.innerText = member_list[i][0];//첫번째 레코드 정보. ID를 td1에 삽입
+				td2.innerText = member_list[i][1];//두번째 레코드 정보.	 PWD를 td2에 삽입
+
+				console.log(td);
+
+				//생성된 td들을 추가.
+				record_tr.appendChild(td0);
+				record_tr.appendChild(td1);
+				record_tr.appendChild(td2);
+				table.appendChild(record_tr);
+			}
+		}//end of getList
+			
+	</script>
+
+</head>
+<body>
+	<div id="wrapper">
+		<div id="addUser">
+			ID:<input type="text" size="7" id="m_id"><br>
+			PWD:<input type="password" size="7" id="m_pwd"><br>
+			<input id="btn" type="button" value="등록">
+		</div>
+		
+		<div id="viewUser">
+			
+		</div>
+	</div>
+
+</body>
+</html>

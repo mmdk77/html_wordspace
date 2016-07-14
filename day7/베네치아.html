@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+	<style>
+	#wrapper{
+		width:1000px;
+		height:762px;
+		margin:auto;
+		border:2px solid;
+	}
+	#stage{
+		width:100%;
+		/*height:600px;*/
+		/*background:#c0c0c0;*/
+		color:red;
+		background-image:url("../images/chat_Background.png");
+		background-repeat:no-repeat;
+
+	}
+	#controller{
+		width:100%;
+		height:162px;
+		background:gray;
+		text-align:center;
+	}
+	#hp{
+		width:176px;
+		height:162px;
+		background:green;
+		float:left;
+	}
+	#info{
+		width:400px;
+		height:162px;
+		/*background:brown;*/
+		float:left;
+	}
+
+	#keyword{
+		width:280px;
+		height:50px;
+		background:pink;
+		font-size:35pt;
+	}
+	</style>
+	<script>
+
+	var hp;
+	var hp_array = new Array(4);
+	var gauge_array = new Array(3);
+
+	var word = ["광화문","동대문","광장시장","청계천","명동","이태원","강남","역삼"];
+
+	var stage;
+	var word_array = new Array(word.length);
+	var step=10;
+	var st;
+
+	var keyword;
+	var point;
+	var score=0;
+
+	var limit = 400;
+
+		function init(){
+
+			hp=document.getElementById("hp");
+			stage=document.getElementById("stage");
+			keyword=document.getElementById("keyword");
+			point=document.getElementById("point");
+
+			//alert("stage 높이 = "+stage.style.height);
+
+			limit=parseInt(stage.style.height);
+
+			createHP();		//체력생성 및 보기
+			createWord(); //단어생성 및 보기
+
+		}//end of init();
+
+		function createHP(){
+			//웹페이지 시작시 HP 3*4크기
+			var table=document.createElement("table");   //3*4 테이블 생성
+	
+			for(i=0;i<3;i++){	
+				var tr=document.createElement("tr");			//3개 생성
+				
+				for(j=0;j<=3;j++){
+					var td=document.createElement("td");		 //4개 생성을 바람.
+					td.style.width=50+"px";
+					td.style.height=42+"px";
+					td.style.background="red"
+					tr.appendChild(td); 
+
+					hp_array[j] = td;
+				}
+
+				gauge_array[i]=hp_array;
+				table.appendChild(tr);
+			}
+			//table 속성
+			table.style.border="1px solid hotpink";
+			//HP div table추가
+			hp.appendChild(table);
+		}//end of createHP()		
+
+		/*function test(){
+			gauge_Array[2][2].style.background="white";
+		}*/
+		function gameStart(){
+			//게임 시작시 단어 등장 (CSS의 top의 값이 증가)	
+			//span태그 단어수만큼 생성
+			/*단어+내려오기 기능 init()으로 올림*/
+			drop();
+
+			keyword.focus();
+
+		}//end of gameStart()
+		
+		function createWord(){
+			for(var i=0;i<word.length;i++){
+			var span = document.createElement("span");
+			var rand = Math.random();
+			var a=100;
+			span.style.position="relative";
+			span.style.left=(90*i)+"px";
+			span.style.top=parseInt(a*rand)+"px";
+	
+			span.innerText=word[i];
+			stage.appendChild(span);
+
+			word_array[i]=span;
+			}
+		}
+
+		function drop(){
+
+			for(var i=0;i<word_array.length;i++){
+				word_array[i].style.top=parseInt(word_array[i].style.top)+step+"px";     //word_array[i].style.top+=parseInt(word_array[i].style.top)+step+"px";
+			}
+
+			if(parseInt(word_array[1].style.top)>=limit){
+				gauge[0][0].style.background="red";
+			}
+
+			var level = document.getElementById("speed").value;
+			console.log("현재 레벨값은 "+level);
+			st = setTimeout("drop()",level);
+
+		}//end of drop
+
+		function pause(){
+			clearTimeout(st);
+		}
+
+		function enter(){
+			//키보드 값 중 엔터 키값에만 반응
+			var key= event.keyCode;
+
+			if(key==13){
+				//alert("key="+key);
+				for(var i=0;i<word.length;i++){
+					if(word_array[i].innerText==keyword.value){
+						alert("ㅇ");
+
+						word_array[i].innerText="";		//stage.removeChild(word_array[i]);
+						keyword.value="";
+						//기존 점수 10점;
+						score+=10;
+						point.value=score;
+						
+					}
+				}
+			}
+		}
+	</script>
+
+</head>
+<body onload="init()">
+	<div id="wrapper">
+		<div id="stage" style="height:600px;"></div>
+		<div id="controller">
+			<div id="info">
+				<select id="speed">
+					<option	value="1500">1단계</option>
+					<option	value="1200">2단계</option>
+					<option	value="900">3단계</option>
+					<option	value="500">4단계</option>
+					<option	value="300">5단계</option>
+				</select>
+				<input type="button" value="시작" onclick="gameStart()">
+				<input type="button" value="Pause" onclick="pause()">
+				<input type="text" value="0" size="8" id="point"> 점
+				<input type="text" id="keyword" onkeyup="enter()">
+			</div>
+			<div id="hp">체력HP</div>
+		</div>
+	</div>
+</body>
+</html>

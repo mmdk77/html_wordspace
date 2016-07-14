@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>메모리회원관리</title>
+
+	
+	<style>
+		#wrapper{ 
+			width:650px;
+			height:600px; 
+			border:2px solid red; 
+			margin:auto;
+		}
+		#leftSide{
+			width:150px; 
+			height:600px;
+			background:#ccffff;
+			float:left;
+		}
+		#rightSide{ 
+			width:500px; 
+			height:600px;
+			background:pink; 
+			float:left;
+		}
+		#up{ 
+			width:100%; 
+			height:30px; 
+			background:#99ff99;
+			text-align:center;
+		}
+		#down{
+			width:100%;
+			height:570px; 
+			background:#0099ff; 
+			overflow:scroll;
+		}
+		ul{
+			list-style:none;
+			padding:10px;
+		}
+
+
+		.inputStyle{
+			width:100px;
+			border:1px solid #cccccc;
+		 }
+	</style>
+	<script src="./Member.js"></script> 
+	<script>
+		var txt_id,txt_pwd,txt_name,txt_money;
+		var btn_ok, btn_list, btn_search;
+
+		var memberList = new Array(); //회원들을 담을 공간.
+
+		var down;  //rightSide div
+		var table;  //rightSide 내의 모든 Table
+
+		window.addEventListener("load",function(){
+			//textbox
+			txt_id=document.getElementById("txt_id");
+			txt_pwd=document.getElementById("txt_pwd");
+			txt_name=document.getElementById("txt_name");
+			txt_money=document.getElementById("txt_money");
+			//btn
+			btn_ok=document.getElementById("btn_ok");
+			btn_list=document.getElementById("btn_list");
+			btn_search=document.getElementById("btn_search");
+			//div
+			down=document.getElementById("down");
+
+			
+			btn_ok.addEventListener("click",function(){
+				//등록버튼에 대한 이벤트 등록
+				regist();
+			});
+			btn_list.addEventListener("click",function(){
+				//목록버튼에 대한 이벤트 등록
+				
+				createTitle();
+				clearList();
+				reset();
+				getList();
+				
+			});
+			btn_search.addEventListener("click",function(){
+				//검색버튼에 대한 이벤트 등록
+				getListBySearch();	
+			});
+
+			//초기화 작업
+			createTitle();
+		});
+
+		//등록
+		function regist(){
+			//alert("regist()");
+			//한사람에 대한 정보는 클래스로부터 하나의 인스턴스를 생성.
+			var member = new Member();
+			member.id = txt_id.value;
+			member.pwd = txt_pwd.value;
+			member.name = txt_name.value;
+			member.money = txt_money.value;
+
+			memberList.push(member);
+			alert("등록회원수"+memberList.length);
+			
+		}
+
+		//리스트 지우기
+
+		function clearList(){
+			table.innerHTML="";
+			down.removeChild(table);
+
+			
+		}
+		//리스트
+		function getList(){			//회원수만큼에 테이블의 tr을 보여줌.
+
+			var total=memberList.length;
+			var sum=0;				//총 낸돈의 합계.
+
+			for(i=total-1;i>=0;i++){
+				var member=memberList[i];
+
+				//tr생성.
+				var tr=document.createElement("tr");
+				tr.style.textAlign="center";
+				
+				var td_no=document.createElement("td");
+				td_no.innerText=total--;
+				
+				var td_id=document.createElement("td");
+				td_id.innerText=member.id;
+				
+				var td_pwd=document.createElement("td");
+				td_pwd.innerText=member.pwd;
+				
+				var td_name=document.createElement("td");
+				td_name.innerText=member.name;
+				
+				var td_money=document.createElement("td");
+				td_money.innerText=member.money;
+				
+				sum=sum+parseInt(member.money);
+
+				tr.appendChild(td_no);
+				tr.appendChild(td_id);
+				tr.appendChild(td_pwd);
+				tr.appendChild(td_name);
+				tr.appendChild(td_money);
+
+				console.log("ID="+member.id+", PWD="+member.pwd+", Name"+member.name+", Money="+member.money);
+				table.appendChild(tr);
+
+			}
+
+			//합계 tr추가
+			var tr_sum = document.createElement("tr");
+			var td_sum = document.createElement("td");
+			td_sum.colSpan="5";
+			td_sum.style.textAlign="right";
+			td_sum.innerText="합계:"+sum+"원";
+			td_sum.appendChild(td_sum);
+			table.appendChild(tr_sum);
+	
+		}
+		//검색
+		function getListBySearch(){
+			//alert("getListBySearch()");
+			var resultList=new Array();
+
+			for(var i=0;i<memberList.length;i++){
+				var member=memberList[0];
+
+				if(txt_search.value==member.id){
+					//검색결과
+					//alert("배열내의"+i+"번째에서"+member.id+"라는 회원");
+					resultList.push(member);
+				}
+			}
+			memberList=resultList;
+			clearList();
+			reset();
+			getList();
+		}
+		//등록후. 등록폼 다시 초기화!!
+		function reset(){
+			txt_id.value="";
+			txt_pwd.value="";
+			txt_name.value="";
+			txt_money.value="";
+		}
+		//타이틀 생성
+		function createTitle(){
+			var title=["No","ID","Password","Name","Money"];
+			table = document.createElement("table");
+			table.style.border="1px solid yellow";
+			table.style.width="100%";
+			table.style.color="yellow"
+			var tr = document.createElement("tr");
+			tr.style.textAlign="center";
+			
+			for(i=0;i<title.length;i++){
+				var td = document.createElement("td");
+				td.innerText=title[i];
+				tr.appendChild(td);
+			}
+			table.appendChild(tr);
+			//div에 table부착
+			down.appendChild(table);
+		}
+		</script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="leftSide">
+		<ul>
+			<li>ID : <input type="text" class="inputStyle" id="txt_id"></li>
+			<li>PWD : <input type="pasword" class="inputStyle" id="txt_pwd"></li>
+			<li>NAME : <input type="text" class="inputStyle" id="txt_name"></li>
+			<li>성금 : <input type="text" class="inputStyle" id="txt_money"></li>
+			<li>
+				<input type="button" value="등록" id="btn_ok">
+				<input type="button" value="목록" id="btn_list">
+			</li>
+		</ul>
+	</div>
+	<div id="rightSide">
+		<div id="up">
+			<input type="text">
+			<input type="button" value="검색" id="btn_search">
+		</div>
+		<div id="down"></div>
+	</div>
+</div>
+</body>
+</html>

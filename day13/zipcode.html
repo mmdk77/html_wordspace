@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>우편번호검색</title>
+
+	<script>
+		function setPost(zip,addr){
+			//새창에서 선택한 현재의 우편번호 텍스트를 부모윈도우의 우편번호 입력,주소란 채워넣기.
+		
+			var arr=zip.split("-");
+
+			opener.document.form1.zipcode1.value=arr[0];
+			opener.document.form1.zipcode2.value=arr[1];
+			opener.document.form1.addr1.value=addr;
+			window.close();
+			opener.document.form1.addr2.focus();
+
+			
+		
+		}
+	</script>
+
+</head>
+<body bgcolor="">
+	<table width="100%" border="1px">
+	<tr>
+		<td colspan="2" align="center">
+			<input type="text">
+			<img src="/images/search_btn.png" width ="25px" onclick="">
+		</td>
+	</tr>
+	<tr>
+		<td>우편번호</td>
+		<td>주소</td>
+	</tr>
+	<tr onmouseover="this.style.background='#6600ff'" onmouseout="this.style.background=''">
+		<td><a href="javascript:setPost('123-456','서울 강남구 신사동 도화빌딩')">123-456</a></td>
+		<td>서울 강남구 신사동 도화빌딩</td>
+	</tr>
+	<tr onmouseover="this.style.background='#6600ff'" onmouseout="this.style.background=''">
+		<td><a href="javascript:setPost('456-456','서울 강남구 역삼동 멀티캠퍼스')">456-456</a></td>
+		<td>서울 강남구 역삼동 멀티캠퍼스</td>
+	</tr>
+	<tr onmouseover="this.style.background='#6600ff'" onmouseout="this.style.background=''">
+		<td><a href="javascript:setPost('777-666','서울 구로구 고척동 동양미래대')">777-666</a></td>
+		<td>서울 구로구 고척동 동양미래대</td>
+	</tr>
+	<tr onmouseover="this.style.background='#6600ff'" onmouseout="this.style.background=''">
+		<td><a href="javascript:setPost('999-158','서울 송파구 신천동 신천시장')">999-158</a></td>
+		<td>서울 송파구 신천동 신천시장</td>
+	</tr>
+	</table>
+</body>
+</html>

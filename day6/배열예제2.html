@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+
+	<script>
+		var index = new Array();
+
+		for (i=0;i<20 ;i++ ){
+			/*if(i<=9 && i<20){
+				index[i] =0;
+			}else{
+				index[i] =1;
+			}*/
+			index=(i<=9 && i<20)? index[i]==0:index[i]==1;
+
+			document.write(i+"번째="+index[i]+"<br>");	
+		}
+
+		
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>겔로그</title>
+	<style>
+	body{margin:0px;}
+	#stage{
+		width:1000px;
+		height:800px;
+		background-Image:url("../images/gallerxy/bg.png");
+	}
+	</style>
+	<script src="../lib/Enemy.js"></script>
+	<script src="../lib/Hero.js"></script>
+	<script src="../lib/Bullet2.js"></script>
+	<script src="../lib/lib.js"></script>
+	<script>
+		var stage;
+		var bgY=0;
+		var hero;
+		//전체 적군을 담는 배열.
+		var allArray=new Array();
+
+		//배열을 2개로 선언!!
+		var kingArray=new Array(10); //대왕 파란, 녹색파리 넣기
+		var enemyArray=new Array(90); //졸병 파란, 빨간 파리넣기
+
+		allArray[0]=kingArray;
+		allArray[1]=enemyArray;
+
+
+		var enemyImg=[
+			"../images/gallerxy/blue_king.png",
+			"../images/gallerxy/green_king.png",
+			"../images/gallerxy/enermy1.png",
+			"../images/gallerxy/enermy2.png"
+		];
+
+		window.addEventListener("load",function(){
+			stage=document.getElementById("stage");
+			bgEffect();
+
+			//주인공 등장
+			hero = new Hero(stage,31,33,500-25,730);
+			hero.init();
+
+			//빨간 적군 등장
+			var redY=0;
+			var redCount=0;
+			var enemyIndex=0;
+			
+			//대왕파리
+			for(var i=0;i<10;i++){
+				if(i==(kingArray.length/2)){
+					enemyIndex++;
+				}
+				var king = new Enemy(stage,70,70,100+(i*70),50,enemyImg[enemyIndex]);
+				king.init();
+
+				kingArray[i]=king;
+			}
+			
+			//빨간파리	
+			var index=2;
+			for(var i=0;i<90;i++){
+				if(i%15==0){
+					redY++;
+					redCount=0;
+				}
+				var enemy;
+				if(redY <=3){
+					enemy = new Enemy(stage,30,30,100+(redCount*50),80+(redY*50),enemyImg[2]);
+				}else{
+					enemy = new Enemy(stage,30,30,100+(redCount*50),80+(redY*50),enemyImg[3]);
+				}
+				enemy.init();
+				redCount++;
+
+				//적군담기
+				enemyArray[i]=enemy;
+				console.log("생성된 졸따구="+enemyArray.length);
+			}	
+
+		});
+
+		//키보드 입력처리
+
+		window.addEventListener("keydown",function(){
+			var key=event.keyCode;
+		
+			/*
+			if(key==37){//좌측이동	
+			}else if(key==39){//우측이동
+			}else if(key==32){//총알 발사
+			}*/
+			switch(key){
+				case 37:					//좌측이동
+					hero.velX=-2;
+					break;
+				case 39:					//우측이동
+					hero.velX=+2;
+					break;
+				case 32:					//총알발사
+					fire();
+					break;
+			}
+		});
+		window.addEventListener("keyup",function(){
+			hero.velX=0;
+		});
+		//배경이미지 흘려보내기.
+		function bgEffect(){
+			bgY+=2;
+			stage.style.backgroundPosition="0px "+bgY+"px";
+		
+			setTimeout("bgEffect()",10);
+
+		}
+		//총알발사 함수.
+		function fire(){
+			//스페이스 누를시, *인스터스(클래스에서 생성되는 객체의 단위) 생성
+			var bullet = new Bullet2(stage,10,20,hero.x+(hero.width/2)-3,hero.y);
+			bullet.init();
+		}
+		/*var testCnt=0;
+		function test(){
+			stage.removeChild(kingArray[testCnt].img);
+			testCnt++
+		}*/
+	</script>
+
+</head>
+<body>
+	<div id="stage"></div>
+</body>
+</html>

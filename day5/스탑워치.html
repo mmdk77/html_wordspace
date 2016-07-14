@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>스탑워치</title>
+	<style>
+		#hh{
+			width:200px;
+			height:150px;
+			font-size:40pt;
+			font-weight:bold;
+			color:white;
+			background: gray;
+			text-align:right;
+		}
+		#mm{
+			width:200px;
+			height:150px;
+			font-size:40pt;
+			font-weight:bold;
+			color:white;
+			background: gray;
+			text-align:right;
+		}
+		#ss{
+			width:200px;
+			height:150px;
+			font-size:40pt;
+			font-weight:bold;
+			color:white;
+			background: gray;
+			text-align:right;
+		}
+
+	</style>
+	<script>
+	
+	var hh=0; 
+	var mm=0; 
+	var ss=0;			//시,분,초
+	var st;				//timeset
+
+
+		function init(){
+			document.getElementById("hh").value = 0;
+			document.getElementById("mm").value = 0;
+			 document.getElementById("ss").value = 0;
+		}
+		function start(){
+			ss++
+			st=setTimeout("start()",100);
+			document.getElementById("ss").value = ss;
+			document.getElementById("btn_start").disabled=true;
+			
+		}
+		function stop(){
+			clearTimeout(st); //기존 setTimeout을 중지
+			document.getElementById("btn_start").disabled=false;
+		}
+		
+	
+	</script>
+
+</head>
+<body onload="init()">
+	<input type="text" id="hh" >
+	<input type="text" id="mm" >
+	<input type="text" id="ss" >
+	<input type="button" id="btn_start" value="start" onclick="start()">
+	<input type="button" id="btn_stop" value="stop" onclick="stop()">
+</body>
+</html>
+
+

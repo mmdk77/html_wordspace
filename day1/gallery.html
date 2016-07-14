@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang = "en">
+<head>
+	<meta charset="utf-8">
+	<title>Document</title>
+<script>
+//
+/* , */ 
+//주석영역-html과 script는 다르므로 대소문자나 정확하지 않은 문법은 에러
+
+//개발자가 next함수 정의
+function next(){
+	//alert("Hello");
+	//문서내의 이미지를 바꿈
+	document.getElementById("photo").src="../images/4.jpg";
+}
+</script>
+</head>
+<body>
+
+<img id="photo" src="../images/1.jpg" width=200px>
+<input type="button" value="버튼" onClick="next()">
+
+</body>
+</html>

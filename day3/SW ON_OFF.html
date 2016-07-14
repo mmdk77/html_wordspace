@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>SW ON/OFF</title>
+	<style>
+
+		input{
+			width:200px;
+			height:60px;
+			background:black;
+			font-size:40px;
+			color:white;
+			font-weght:bold;
+		}
+		body{
+			background:yellow;
+		}
+	</style>
+	
+	<script>
+		var bg;
+		var flag = true;
+
+		function on(){
+			document.body.style.background="black";
+		}
+		function off(){
+			document.body.style.background="yellow";
+		}
+		function sw(){
+			flag=!flag;
+			bg = (flag) ? "white" : "black";
+			document.body.style.background= bg;
+		}
+
+	</script>
+</head>
+<body>
+
+	<input type="button" value="ON"  id="on" onclick="on()" >
+	<input type="button" value="OFF" id="off" onclick="off()">
+	<input type="button" value="on/off" id="sw" onclick="sw()">
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>공튀기기</title>
+	<style>
+		body{margin:0px;}
+		#stage{
+			border:1px solid;
+		}
+	</style>
+
+	<script src="../lib/lib.js"></script>
+	<script>
+		var stage;
+		var ball_img=[
+		"../images/football.png",
+		"../images/baseball.png",
+		"../images/golfball.png",
+		"../images/basketball.png",
+		"../images/tennisball.png",
+		"../images/vallyball.png"
+		];
+
+		var stage_width=800;
+		var stage_height=800;
+					
+
+		var Ball=function(stage,wid,hei,x,y,velX,velY,rotate,src){
+			//클래스의 변수 = 멤버변수
+			this.stage=stage;
+			this.img;
+			this.width =wid;
+			this.height =hei;
+			this.x =x;
+			this.y =y;
+			this.src=src;
+			this.rotate=rotate;   //시작할 각도
+			this.velX=velX;		//X축으로 이동
+			this.velY=velY;		//Y축으로 이동.
+
+			this.init=function(){
+				this.img=document.createElement("img");
+				this.img.src=this.src;
+				this.img.style.width=this.width+"px";
+				this.img.style.height=this.height+"px";
+				this.img.style.position="absolute";
+				this.img.style.left=this.x+"px";
+				this.img.style.top=this.y+"px";
+
+				this.stage.appendChild(this.img);
+				
+				this.move();
+			}
+
+			this.move=function(){
+				var me=this;
+
+				//회전시키기
+				this.rotate+=2;
+				this.img.style.transform="rotate("+this.rotate+"deg)";
+
+				//이동하기
+				this.x+=this.velX;  //현재X위치 => velX만큼 위치 증가
+				this.y+=this.velY;  //현재Y위치 => velY만큼 위치 증가			
+				this.img.style.left=this.x+"px";
+				this.img.style.top=this.y+"px";
+
+				//우측벽으로 나가는지 판단
+				if(this.x>=stage_width-this.width || this.x<=0){
+					this.velX=-1*this.velX;
+
+				}else if(this.y>=stage_height-this.height || this.y<=0){
+					this.velY=-1*this.velY;
+				}
+			
+				setTimeout(function(){
+					me.move();
+				},10);
+	
+			}
+		}
+		window.addEventListener("load",function(){
+			stage=document.getElementById("stage");
+			stage.style.width=stage_width+"px";
+			stage.style.height=stage_height+"px";
+		});
+
+		window.addEventListener("keydown",function(){
+			if (event.keyCode==32){
+				var rand = parseInt(Math.random()*ball_img.length);
+				
+				//X의 증가량에 대한 랜덤범위
+				var randX =getRandomByRange(5,2);
+				var randY =getRandomByRange(7,3);
+
+				var ball = new Ball(stage,100,100,50,50,randX,randY,0,ball_img[rand]);
+									   //stage, wid, hei, x,  y,  velX,  velY,rotate,src
+				ball.init();
+				
+			}
+		});
+
+	</script>
+
+</head>
+<body>
+<div id="stage"></div>
+
+</body>
+</html>

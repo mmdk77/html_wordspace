@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<title>뮤직플레이어</title>
+
+	<script>
+		var isPlaying = false;
+		var count = 1;
+
+		function play(){
+			//문서내의 music이라는 요소 재생.
+			if(!isPlaying){  //(isPlaying == ture)
+				document.getElementById("music").loop = document.getElementById("ch".checked;
+				document.getElementById("music").play();
+				document.getElementById("mName").innerText=count+".mp3"
+				document.getElementById("btnPlay").value ="||";
+			}else{
+				document.getElementById("music").load();
+				document.getElementById("btnPlay").value ="▶";
+			}
+			isPlaying = !isPlaying; //isPlaying = false;
+		}
+		function stop(){
+			//다시 음악을 준비.
+			document.getElementById("music").load();
+		}
+		function next(){
+			count++;
+			document.getElementById("dest").src="../audio/"+count+".mp3";
+			document.getElementById("music").load();
+			document.getElementById("music").play();
+		}
+		function ago(){
+			count--;
+			document.getElementById("dest").src="../audio/"+count+".mp3";
+			document.getElementById("music").load();
+			document.getElementById("music").play();
+		}
+	</script>
+
+</head>
+<body>
+	
+	<audio id="music">
+		<source id="dest"src="../audio/1.mp3" type="audio/mpeg">
+	</audio>
+	
+	<div id="monitor">
+		<marquee id="mName">재생버튼을 누르세요.</marquee>
+	</div>
+
+	<input type="button" value="◀◀" onclick="ago()">
+	<input type="button" value="■" onclick="stop()">
+	<input id="btnPlay" type="button" value="▶" onclick="play()">
+	<input type="button" value="▶▶" onclick="next()">
+	REPEAT : <input id="ch" type="checkbox" value="checked">
+</body>
+</html>

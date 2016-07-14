@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>화살 날리기.</title>
+	<style>
+		#wrapper{
+			width:100%;
+			height:800px;
+	}
+	</style>
+	<script>
+	var wrapper;
+	
+	//JavaScript 클래스정의 >> var 클래스명=function(){}
+	var Arrow = function(){
+
+		this.span;
+		this.x= 100;
+
+		
+		this.init=function(){
+			wrapper = document.getElementById("wrapper");
+
+			this.span = document.createElement("span");
+			this.span.innerText="→";
+			this.span.style.fontSize="50pt"; 
+			this.span.style.position="relative";
+			this.span.style.top=200+"px";
+
+			wrapper.appendChild(this.span);		
+			this.wang();
+
+		}
+
+		this.wang=function(){
+			var me=this;
+			this.x+=10;
+			this.span.style.left= this.x+"px";
+			setTimeout(function() {
+				me.wang();
+			},1000);
+		}
+	}
+
+	function test(){
+		for(var i=1;i<=100;i++){
+			var shot = new Arrow();
+			shot.init();
+		}
+
+	}
+
+
+		
+
+
+	
+	</script>
+
+</head>
+<body onload="test()">
+	<div id="wrapper">
+	</div>
+</body>
+</html>

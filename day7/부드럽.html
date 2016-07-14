@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>부드럽</title>
+	
+	
+	<style>
+
+	#mario{
+		height:200px;
+		left:0px;
+		position:absolute;
+	}
+
+	</style>
+	<script>
+		var mario;  //이미지 변수
+		var targetX=700;;
+		var targetY=0;
+		var a=0.9;
+
+		var img;
+
+
+		function init(){
+			mario=document.getElementById("mario");
+			mario.style.left= targetX-a*(targetX - parseInt(mario.style.left))+"px";
+			mario.style.top= targetY-a*(targetY - parseInt(mario.style.top))+"px";
+			
+			console.log(mario.style.left);
+			console.log(mario.style.top);
+			setTimeout("init()",10);
+		}
+		function move(){
+			targetX=event.clientX;
+			targetY=event.clientY;
+		}
+	</script>
+
+</head>
+<body onload="init()" onmousemove="move()">
+<div>
+	<img src="../images/mario.png" id="mario" style="position:absolute; left:0px;top:200;">
+</div>
+</body>
+</html>

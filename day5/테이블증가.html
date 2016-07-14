@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+
+	<script>
+		var a =prompt("층수를 입력.");
+		var h =prompt("호수를 입력.");
+		var w =prompt("두께를 입력.");
+		var s = prompt("가로를 입력.");
+
+		document.write("<table width=\""+s+"+px\" border=\""+w+"px\">");
+			for(var i=1;i<=a;i++){
+				document.write("<tr>");
+				for(var j=1;j<=h;j++){
+					document.write("<td width=\"100\">&nbsp;"+(i+"0"+j)+"</p></td>");
+				}
+				document.write("</tr>");
+			}
+		document.write("</table>");
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+	<style>
+		#cross{
+			width:100px;
+			height:100px;
+		}
+		#bg{
+			width:100%;
+			height:1000px;
+		}
+		
+
+	</style>
+	<script>
+		function getInfo(){
+			document.getElementById("cross").event.clientX.src="../ProjectImages/cross.png";
+		}
+	</script>
+
+</head>
+<body onmousemove="getInfo()">
+
+	<div><img src="../ProjectImages/background.png" id="bg"><div>
+		<img src="../ProjectImages/cross.png" id="cross">
+		</div>
+	</div>
+</body>
+</html>

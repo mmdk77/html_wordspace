@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>배열을 이용한 겔러리</title>
+
+	<style>
+		#wrapper{
+			width:600px;
+			height:800px;
+			border:3px solid;
+			margin:auto;
+		}
+		#PicView{
+			width:99%;
+			height:700px;
+			border:3px solid;
+			margin:auto;
+		}
+		#btn{
+			width:99%;
+			height:90px;
+			border:3px solid;
+			margin:auto;
+		}
+
+		#next{
+			margin:auto;
+		}
+		#prev{
+			transform:rotate(180deg);
+			margin:auto;
+
+		}
+	</style>
+
+
+	<script>
+		var photo = new Array();
+		photo[0] ="dog.jpg";
+		photo[1] ="dog(2).jpg";
+		photo[2] ="apple.jpg";
+		photo[3] ="finder.jpg";
+		photo[4] ="party.jpg";
+
+		var cnt = 0;
+
+
+		function next(){
+
+
+			var photo = document.getElementById("photo");
+			photo.src ="../images/"+photo[cnt];
+			cnt++;
+			console.log(i);
+			
+	
+		}
+
+		function prev(){
+			
+			var photo = document.getElementById("photo");
+			photo.src ="../images/"+photo[cnt];
+			cnt--;
+			console.log(i);
+			
+		}
+		
+	</script>
+
+</head>
+<body>
+	<div id = "wrapper">
+		<div id = "PicView">
+		<img src="../images/dog.jpg" id="photo" width="100%"></div>
+		<div id = "btn">
+
+			<img src="../images/btn.png" id="prev" onclick="prev()">
+			<img src="../images/btn.png" id="next" onclick="next()">
+			
+		</div>
+	</div>
+
+</body>
+</html>

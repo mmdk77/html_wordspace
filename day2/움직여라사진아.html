@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+	<style>
+		#pic{
+			position:absolute; //절대위치
+			left:200px;
+			top:300px;
+			transform:scale(k,i);
+		}
+		#left{
+			position:absolute;
+			left:10px;
+			top:100px;
+		}
+		#right{
+			position:absolute;
+			left:100px;
+			top:100px;
+		}
+		#up{
+			position:absolute;
+			left:55px;
+			top:70px;
+		}
+		#down{
+			position:absolute;
+			left:55px;
+			top:140px;
+		}
+		#spin(){
+			position:absolute;
+			left:55px;
+			top:105px;
+			transform:rotate(10 deg);
+		}
+
+	</style>
+	<script>
+		var x=0;
+		var y=0;
+		var z=0;
+
+		var k = 1;
+		var i = 1;
+			function moveRight(){
+				x=x+10
+				document.getElementById("pic").style.left = x+"px";
+			}
+			function moveLeft(){
+				x=x-10;
+				document.getElementById("pic").style.left = x+"px";
+			}
+			function moveUp(){
+				y=y-10
+				document.getElementById("pic").style.top = y+"px";
+			}
+			function moveDown(){
+				y=y+10
+				document.getElementById("pic").style.top = y+"px";
+			}
+			function spin(){
+				z=z+10
+				document.getElementById("pic").style.transform = "rotate("+z+"deg)";
+			}
+			function big(){
+				k++;
+				i++;
+				document.getElementById("pic").style.transform = "scale("+k+","+i+")";
+			}
+
+	</script>
+
+</head>
+<body>
+	<img src="../images/2.jpg" id="pic" onMouseOver="spin()">
+	<input type="button" value="◀"  id="left" onClick="moveLeft()">
+	<input type="button" value="▶" id="right" onClick="moveRight()">
+	<input type="button" value="▲" id="up" onClick="moveUp()">
+	<input type="button" value="▼" id="down" onClick="moveDown()">
+	<input type="button" value="돌려" id="spin" onClick="spin()">
+	<input type="button" value="커져라" id="pic" onMouseOver="big()">
+</body>
+</html>

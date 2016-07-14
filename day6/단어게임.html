@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrapper{
+			width:400px;
+			height:500px;
+			border:2px solid;
+			margin:auto;
+		}
+		#wordView{
+			width:100%;
+			height:120px;
+			background:black;
+			font-size:50pt;
+			text-align:center;
+			color:white;
+		}
+		#word_input{
+			width:99%;
+			height:70px;
+			background:gray;
+			font-size:45pt;
+		}
+		#feedback{
+			width:100;
+			height:200px;
+			font-size:120pt;
+			text-align:center;
+			color:red;
+			font-weight:bold;
+		}
+		#score{
+			width:100%;
+			height:70px;
+			font-size:50pt;
+			text-align:center;	
+		}
+	</style>
+	<script>
+	var word = new Array();
+	word[0] ="강화도";
+	word[1] ="인천";
+	word[2] ="부산";
+	word[3] ="서울";
+	word[4] ="제주도";
+	word[5] ="신진도";
+	word[6] ="만리포";
+	word[7] ="천리포";
+	word[8] ="대천";
+	word[9] ="대구";
+	
+	var cnt = 0;																					//배열의 번지수를 결정하는 전역변수
+	var point = 0 ;																					//누적될 점수
+
+	
+	
+		function init(){																				//게임에 사용할 단어를 메모리 확보
+			var wordView = document.getElementById("wordView");
+			wordView.innerText=word[cnt];													//게임시작시 초기
+			var word_input = document.getElementById("word_input");
+			word_input.focus();																	//focus는 커서를 올려놓는 기능 함수
+		}
+
+		function enter(){																			//키보드를 눌렀다 뗄시 함수호출.
+
+			var key = event.keyCode;															//alert("입력한 아스키코드 ===>"+key);
+
+			if(key==13){																			//입력한데이터와 배열의값과 비교
+					
+				var word_input = document.getElementById("word_input");
+
+				if(word_input.value== word[cnt]){
+					document.getElementById("feedback").innerText="O";
+						//맞았을때 O
+					point+=10;
+					document.getElementById("score").innerText=point+"점";
+						//맞았을때 점수 추가.
+				}else{
+					document.getElementById("feedback").innerText="X";
+						//틀렸을때 X
+				}
+				cnt++;
+				console.log(cnt);
+			}
+				document.getElementById("wordView").innerText=word[cnt];
+
+				word_input.value="";
+
+			}
+		}
+
+	</script>
+
+</head>
+<body onload="init()">
+
+	<div id="wrapper">
+		<div id="wordView"></div>
+			<input type="text" id="word_input" onkeyup="enter()">
+		<div id="feedback"></div>
+		<div id="score">0점</div>
+	</div>
+
+</body>
+</html>

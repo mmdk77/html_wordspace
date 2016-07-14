@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+
+	<style>
+		#wrapper{
+			width:600px;
+			height:600px;
+			/*background:gray;*/
+			margin:auto;
+		}
+		#controller{
+			width:100%;
+			height:50px;
+			background:black;
+			margin:auto;
+			/*div안의 내용을 중앙정렬*/
+			text-align:center;
+		}
+		#controller img{
+			/* 한칸띄우면, 안쪽 요소를 의미*/
+			width:70px;
+		}
+		#btn_prev{
+			transform:rotate(180deg);
+		}
+		#btn_auto{
+			width:60px;
+		}
+	</style>
+
+	<script>
+		var img=1;
+		var back=false;
+
+		function next(){
+			
+			if(back==true){
+				img++
+				console.log(img);
+				document.getElementById("main").src="../images/"+img+".jpg";
+				if(img<=5){
+					back=false;
+				}
+			}else if(back==false){
+				if(img==0){
+					back=!back;
+					img=1;
+				}	
+			}
+		}
+		function prev(){
+			img--
+			document.getElementById("main").src="../images/"+img+".jpg";
+		}
+		function auto(){
+			setInterval("next()",1000);
+		}
+	</script>
+
+</head>
+<body>
+	
+	<div id="wrapper">
+	<img src="../images/1.jpg" width="100%" id="main">
+			<div id="controller">
+				<img src="../images/btn.png" id="btn_prev" onclick="prev()">
+				<img src="../images/auto.png" id="btn_auto" onclick="auto()">
+				<img src="../images/btn.png" id="btn_next" onclick="next()">
+		</table>
+	</div>
+</body>
+</html>

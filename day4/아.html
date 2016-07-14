@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>이미지 들고 다니기</title>
+</head>
+
+	<script>
+		function init(){
+			document.getElementById("txt").value="키위";
+		}
+	</script>
+
+<body onload="init()">
+<!--
+<img src="../images/2.jpg" onmouseover="alert('올렷어?')" onmouseout="alert('벗어났어?')" ondblclick="alert('두번눌렀쪙?')">
+-->
+<input type="textbox" id="txt" onchange="alert('변경?')">
+<select onchange = "alert('바꿧어')">
+	<option>naver.com</option>
+	<option>gmail.com</option>
+	<option>daum.net</option>
+</select>
+
+</body>
+</html>

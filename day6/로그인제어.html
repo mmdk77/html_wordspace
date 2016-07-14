@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>로그식 양식 제어</title>
+
+	<script>
+		function loginCheck(){
+			//서버 접속전 유저의 유효성체크
+			
+			if(document.getElementById("member_id").value==""){
+				alert("ID는 입력하고 누르냐?");
+				document.getElementById("member_id").focus();
+				return;
+			}else if(!document.getElementById("member_pwd").value){
+				//document.getElementById("member_pwd").value=="")
+				alert("Pwd는 입력 하고 누르냐?");
+				document.getElementById("member_pwd").focus();
+				return;
+			}else{
+				location.href="http://daum.net";
+			}
+		}
+		
+	</script>
+
+</head>
+<body>
+	<table width="300px" border="1px" align="center">
+		<tr>
+			<td>ID</td>
+			<td><input type="text" maxlength="8" id="member_id"></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" maxlength="8" id="member_pwd"></td>
+		</tr>
+		<tr>
+			<td colspan="2"> 	<!--colspan = "2"  2셀 병합  -->
+				<input type="button" value="회원가입">
+				<input type="button" value="ID/Password 찾기">
+				<input type="button" value="Login" onclick="loginCheck()">
+			</td>
+			
+		</tr>
+	</table>
+</body>
+</html>

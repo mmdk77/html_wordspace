@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>이퀄라이저</title>
+	<style>
+	body{margin:0px;}
+		#stage{
+			width:700px;
+			height:500px;
+		}
+	</style>
+	<script src="../lib/lib.js"></script>
+	<script>
+	var bgArray = ["red","orange","yellow","green","blue","navy","purple"];
+	var rectArray = new Array();
+
+	var Rect = function(stage,bg,wid,hei,x,y){
+		this.stage=stage;
+		this.div;
+		this.bg=bg;
+		this.width=wid;
+		this.height=hei;
+		this.x=x;
+		this.y=y;
+		this.targetY=0;
+		this.a=0.9;
+		this.posY=40;
+
+		this.init=function(){
+			var me = this;
+			this.div = document.createElement("div");
+			this.div.style.background=this.bg;
+
+			this.div.style.width=this.width+"px";
+			this.div.style.height=this.height+"px";
+			
+			this.div.style.position="absolute";
+			this.div.style.left=this.x+"px";
+			this.div.style.top=this.y+"px";
+
+			this.stage.appendChild(this.div);	
+			
+			this.div.addEventListener("mouseover",function(){
+				//alert(me.bg+"zz");
+				me.targetY=500;
+			});
+			this.div.addEventListener("mouseout",function(){
+					me.targetY=0;
+					me.div.style.height=40+"px";
+			});
+
+			this.move();
+		}
+
+		this.move=function(){
+			var me=this;
+
+			var y=parseInt(this.div.style.height)+5;
+
+			this.div.style.height=this.targetY-this.a*(this.targetY-y)+"px";
+			
+			setTimeout(function(){
+				me.move();
+			},20);
+		}
+		
+	}
+
+	function dance(){
+		for(var i=0;i<rectArray.length;i++){
+			rectArray[i].targetY=getRandomByRange(500,40) ; //40~500
+		}
+		setTimeout("dance()",300);
+	}
+
+	window.addEventListener("load",function(){
+		init();
+	});
+
+
+	function init(){
+		for(var i=0;i<bgArray.length;i++){
+			var rect = new Rect(stage,bgArray[i],100,40,i*100,0);
+			rect.init()
+			rectArray[i] =rect;
+		}
+		dance();
+	}
+		
+	</script>
+
+</head>
+<body>
+<div id="stage"></div>
+</body>
+</html>

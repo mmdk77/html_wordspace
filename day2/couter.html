@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+	<!--<script>
+		document.getElementById("txt").value=1;
+
+	</script>-->
+</head>
+<body>
+	<input type="text" value="0" id="txt"> 
+	<input type="button" value="카운터증가" onClick="cnt()">
+
+
+</body>
+</html>
+
+<script>
+	var x=0;
+
+	function cnt(){
+		x++;
+		document.getElementById("txt").value=x;
+	}
+
+</script>

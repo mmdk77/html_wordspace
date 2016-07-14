@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>이미지 홍수내기</title>
+	<style>
+
+	</style>
+	<script>
+		prompt("이미지의 가로폭을 입력하세요");
+		var a;
+		function boom(){
+			for(a=1;a<=2000;a++){
+				document.write("<img src= \"../images/2.jpg\" width=\""+a+"px\">");
+			}
+		}
+	</script>
+</head>
+<body>
+
+<img src="../images/2.jpg" >
+<input type="button" value="이미지폭발" onclick="boom()">
+	
+</body>
+</html>

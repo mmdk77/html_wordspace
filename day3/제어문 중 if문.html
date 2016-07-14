@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>Document</title>
+	<script>
+
+		function now(){
+			var result = prompt("원하는 번호를 선택하세요\n 1.오렌지 2.사과 3.멜론 4.체리");
+		
+			if(result==1){
+				alert("1.오렌지를 선택한 당신 오렌지를 좋아하시는군요.");
+				document.write("1.오렌지를 선택한 당신 오렌지를 좋아하시는군요.");
+			}else if(result==2){
+				alert("2.사과를 선택한 당신 사과를 좋아하시는군요.");
+				document.write("2.사과를 선택한 당신 사과를 좋아하시는군요.");
+			}else if(result==3){
+				alert("3.멜론를 선택한 당신 멜론를 좋아하시는군요.");
+				document.write("3.멜론를 선택한 당신 멜론를 좋아하시는군요.");
+			}else if(result==4){
+				alert("4.체리를 선택한 당신 체리를 좋아하시는군요.");
+				document.write("4.체리를 선택한 당신 체리를 좋아하시는군요.");
+			}
+		}
+		function back(){
+			now();	
+		}
+
+	</script>
+</head>
+<body>
+	
+	<input type="button" value="이전" onclick="back()">
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>가위바위보</title>
+
+	<script>
+		var game = new Array();
+		game[0] = "가위.png";
+		game[1] = "주먹.png";
+		game[2] = "보.png";
+
+		var ran = Math.random();
+
+		var gam = parseInt(ran*game.length);
+		//document.write("<img src=\"../images/가위.png\">");
+		
+		document.write("<img src= \"..images/"+game[gam]+"\">");
+
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>

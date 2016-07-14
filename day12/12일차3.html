@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>미로게임</title>
+
+	<style>
+		body{margin:0px;}
+		#stage{
+			background:#ccffff;
+
+		}
+	</style>
+	<script src="../lib/Maze.js"></script>
+	<script src="../lib/Hero.js"></script>
+	<script src="../lib/lib.js"></script>
+	<script>
+		var stage;
+		var wid=20;// 미로의 width
+
+		var hero;
+		var maze;
+		
+		window.addEventListener("load",function(){
+			init();
+		});
+		
+		function init(){
+			stage=document.getElementById("stage");
+			stage.style.width = screen.width+"px";
+			stage.style.height= 800+"px";
+
+			stage.style.backgroundImage="url('../images/example.png')"
+			
+			var cntY=0; //개행여부를 결정할 변수
+			var cntX=0; //X의 값을 초기화
+			
+			for(var i=0;i<2000;i++){				//미로생성
+				if(i%50==0){
+					cntY++;
+					cntX=0;
+				}
+				var maze = new Maze(stage,wid,wid,cntX*wid,cntY*wid);
+				maze.init();
+				cntX++;
+			}
+
+			hero = new Hero(stage,wid,wid,50,50,"../images/mario.png");
+			hero.init();
+		}
+
+			//상,하,좌,우 이벤트
+		window.addEventListener("keydown",function(){
+			var key=event.keyCode;
+			switch(key){
+				case 37:		//좌 hero.velX=-2;
+				goLeft();
+				break;
+				case 38:		//상 hero.velY=-2;
+				goUp();
+				break;
+				case 39:		//우 hero.velX=+2;
+				goRight();
+				break;
+				case 40:		//하 hero.velY=+2;
+				goDown();
+				break;
+			}
+		});
+
+		function goLeft(){
+			var result =hitTest(hero, maze);
+			if(result){
+				hero.velX=-2;
+			}
+		} 
+		function goUp(){
+			hitTest();
+		}
+		function goRight(){
+			hitTest();
+		}
+		function goDown(){
+			hitTest();
+		}
+		
+		window.addEventListener("keyup",function(){
+			var key=event.keyCode;
+			if(key == 37 || key == 39){
+				hero.velX=0;
+			}
+			if(key == 38 || key==40){
+				hero.velY=0;
+			}
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div id="stage"></div>
+</body>
+</html>
