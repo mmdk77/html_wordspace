@@ -1,0 +1,3 @@
+sys/change_on_install dba
+system/manager
+java/java

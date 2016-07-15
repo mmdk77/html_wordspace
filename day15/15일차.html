@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset ="UTF-8">
+	<title>제이쿼리 실습</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+
+	/*function hide(){
+		var bt = document.getElementById("bt");
+		bt.style.display="none";
+	}*/
+
+	$(document).ready(function(){
+		//JQuery에서 load의 역활.
+		for(var i=0;i<3;i++){
+			$("button").hide(1000);
+			$("button").show(1000);
+		}
+	});
+	</script>
+
+</head>
+<body>
+	<input type="button" id="bt" value="zzzzzzzzzz" onclick="hide()">
+	<button>나버튼</button>
+</body>
+</html>

@@ -1,0 +1,3 @@
+SQL> select table_name from user_tables;		//Oracle 내의 생성되었던 테이블을 검색.
+SQL> desc member;				//생성되었던 테이블의 구조.
+

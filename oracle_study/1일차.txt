@@ -1,0 +1,51 @@
+SQL> spool  '경로\ 파일명' 
+
+SQL> --스풀을 가동한 후 반드시 끝날땐 가동 중단해야 파일이 제대로 저장된다..
+
+SQL> --조회하는 문장
+SQL> select name, money from member;
+
+NAME                      MONEY                                                 
+-------------------- ----------                                                 
+seon                       1000                                                 
+seon                       1000                                                 
+
+SQL> spool off
+
+
+
+Oracle
+
+sqlplus                             			//cmd DOS창으로부터 Oracle 접속
+
+create table member(
+name 	varchar(10),
+money	number,
+memo	varchar(100));              		//테이블은 mssql,mysql과 동일
+
+insert into member(name,money,memo)
+valuse('seon',1000,'o');			//Oracle 값 입력
+
+select name,money from member 		//이름,돈 테이블에서 입력한 값 찾기.
+
+set line 200; 				//데이터 보기좋게 해줌 데이터가 많을 경우 200↑
+set pagesize 20;				//한페이지내에 데이터를 출력		
+
+order by desc 오름차순
+order by asc  내림차순
+
+create tablespace firstspace			//MySQL- database 생성처럼 Oracle - tablespace로 생성
+datafile '경로\파일명.dbf' size 10m;   		//데이터 파일 경로와 파일명, 파일크기 지정
+
+create user java				//유저 및 패스워드 지정 기본 데이터베이스는 firstspace
+identified by java				//크기까지 제한없이 사용가능
+default tablespace firstspace
+quota unlimited on firstspace
+
+grant create session to java;			//java에 대한 DB접근 권한부여
+grant create table to java;			//java에 대한 테이블생성 권한 부여
+
+
+삼성SDS 멀티퍼스 IoT강사 민진호
+zino1187@naver.com
+http://blog.naver.com/zino1187

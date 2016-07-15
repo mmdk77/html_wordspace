@@ -1,0 +1,25 @@
+create table emp_copy as select * from emp 			//기존 emp테이블을 copy본 만듬
+
+
+update // 레코드수정 명령어
+
+SQL> update emp set ename='킹왕짱' 				//입력된 DB data를 전부 바꿈 
+SQL> update emp set ename='킹왕짱' where empno=7839;	//조건문을 달아야 한사람만 바뀜
+
+
+delete // 레코드 삭제
+
+SQL> delete from emp where empno='7369';			//삭제도 수정과 마찬가지로 조건문을 안달면 DB data 다 날아감.
+
+
+insert into (컬럼명,컬럼명,OOO) values(OOO,OOO,OOO)		//data입력 values에는 컬럼명에 맞게 넣어야함
+
+SQL> insert into emp(empno,ename,job,sal) values(7777,'미생','SALSEMAN',8000); // 주어진 테이블속성에 맞춰 데이터 값을 입력.
+
+group by // 그룹 *count는 이미 그룹화되어있는 집계함수이므로 예외로 둘수있다.
+
+count(컬럼) //집계함수
+
+
+Oracle 내에서 대용량의 파일을 읽어 DB에 저장이가능.
+실습예제)http://blog.naver.com/zino1187/110029142975
